@@ -1,0 +1,54 @@
+<html>
+<body>
+<div class="title">
+<h3>
+Coin Fipper/ Performance Monitor
+</h3>
+</div>
+
+<div class="results">
+  <h5 id="performance">
+  
+  </h5>
+  
+  <h5>
+    Heads: <span id="headNum"></span>
+  </h5>
+  <h5>
+    Tails: <span id="tailNum"></span>
+  </h5>
+</div>
+<div class="inputs">
+  <h5>
+  Number of Flips: <span><input type="number" id="flips" min="1" value="1" max="999999999"/></span>
+  </h5>
+  <input type="button" value="Go!" onclick="flip()"/>
+</div>
+<script>
+function flip() {
+	document.getElementById('performance').innerHTML = "Fliping coins! Please wait...";
+	var t0 = performance.now();
+	var flips = document.getElementById('flips').value;
+	var headsNum = 0;
+	var tailsNum = 0;
+  
+		for(;flips > 0; flips--){
+				var coin = Math.floor(Math.random()*2);
+					if(coin > 0){
+						headsNum++;
+					}
+					else{
+						tailsNum++
+					}
+		}
+	document.getElementById('headNum').innerHTML = headsNum;
+	document.getElementById('tailNum').innerHTML = tailsNum;
+  var t1 = performance.now();
+  var perfSeconds = ((t1 - t0)/1000).toFixed(5);
+  document.getElementById('performance').innerHTML = "Completed in " + perfSeconds + " seconds.";
+  t1 = 0;
+  t0 = 0;
+}
+</script>
+</body>
+</html>
